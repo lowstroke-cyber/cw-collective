@@ -1,0 +1,377 @@
+/* =============================================================
+   Christopher White Collective — Design Tokens
+   colors_and_type.css
+
+   Two surfaces, one voice:
+     • Night  — default. Late-night jazz club, lights down,
+                brass under a single spotlight.
+     • Paper  — supporting. A liner-note booklet, a playbill,
+                a typeset programme.
+   ============================================================= */
+
+/* ----------  FONT IMPORTS  --------------------------------- */
+/* Headline:   Cormorant Garamond  (Google Fonts) — Italian Renaissance serif,
+               high contrast, italic feels handwritten on a chalkboard menu.
+   Body:       EB Garamond         (Google Fonts) — warm humanist serif for
+               running paragraphs and programme notes.
+   UI / Micro: Hanken Grotesk      (Google Fonts) — neutral grotesque used
+               sparingly for nav, captions, dates, tracklist labels.
+   Mono:       JetBrains Mono      (Google Fonts) — credits, timecodes,
+               liner-notes runtimes.
+
+   NOTE TO BRAND OWNER → If a custom face is preferred, the natural upgrade
+   path is Domaine Display (Klim) for headlines and Söhne (Klim) for UI.
+   The current Google selections are free-to-use stand-ins chosen to
+   approximate the same proportions and rhythm. Please confirm or supply
+   licensed font files. ──────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+
+/* ----------  COLOR — RAW PALETTE  -------------------------- */
+:root {
+  /* Night surface (the room) */
+  --night-900: #0B0908;   /* curtain down — true off-black, warm undertone */
+  --night-800: #110D0B;   /* primary night bg */
+  --night-700: #1A1512;   /* card / raised surface on night */
+  --night-600: #241E1A;   /* hover-raised */
+  --night-500: #2F2823;   /* divider on night */
+
+  /* Paper surface (the programme) */
+  --paper-50:  #FBF7EE;   /* brightest paper */
+  --paper-100: #F2ECDF;   /* primary paper bg */
+  --paper-200: #E8E0CE;   /* card / divider on paper */
+  --paper-300: #D6CCB6;   /* edge / rule */
+  --paper-400: #B6AB92;   /* secondary on paper */
+
+  /* Ink — text + structure, neutral warm */
+  --ink-900: #1A1512;     /* on paper — body copy */
+  --ink-700: #3D332B;     /* on paper — secondary */
+  --ink-500: #6F6358;     /* on paper — tertiary, captions */
+  --ink-300: #9C9183;     /* on paper — muted */
+
+  --halo-100: #FBF7EE;    /* on night — primary text */
+  --halo-200: #E5DDCB;    /* on night — secondary */
+  --halo-300: #ADA294;    /* on night — tertiary */
+  --halo-400: #6F6558;    /* on night — muted */
+
+  /* Brand accents — sparingly used */
+  --brass-500: #C9A24A;   /* saxophone brass, the spotlight */
+  --brass-600: #A8842F;   /* pressed / link */
+  --brass-300: #E2C57E;   /* highlight on dark */
+
+  --ember-500: #C95B2E;   /* stage-light amber, used for live/now */
+  --wine-700:  #5C1A1F;   /* velvet curtain, occasional caps */
+  --midnight-700: #14233A;/* cinematic blue, used in posters / score work */
+  --sage-500:  #7A8A6E;   /* a single cool counterpoint */
+
+  /* Semantic state */
+  --signal-live: var(--ember-500);
+  --signal-ok:   #6E8A5E;
+  --signal-warn: #C99A2E;
+  --signal-err:  #A23A2C;
+}
+
+
+/* ----------  SEMANTIC SURFACE TOKENS  ---------------------- */
+/* Default = Night. Add [data-surface="paper"] to flip a region. */
+
+:root,
+[data-surface="night"] {
+  --bg-1: var(--night-800);
+  --bg-2: var(--night-700);
+  --bg-3: var(--night-600);
+  --bg-curtain: var(--night-900);
+
+  --fg-1: var(--halo-100);
+  --fg-2: var(--halo-200);
+  --fg-3: var(--halo-300);
+  --fg-mute: var(--halo-400);
+
+  --rule: rgba(251, 247, 238, 0.10);
+  --rule-strong: rgba(251, 247, 238, 0.22);
+
+  --accent: var(--brass-500);
+  --accent-hover: var(--brass-300);
+  --link: var(--brass-300);
+  --link-hover: var(--halo-100);
+
+  --shadow-glow: 0 0 64px -16px rgba(201, 162, 74, 0.18);
+  --shadow-card: 0 1px 0 rgba(251, 247, 238, 0.04) inset,
+                 0 24px 48px -24px rgba(0, 0, 0, 0.7);
+}
+
+[data-surface="paper"] {
+  --bg-1: var(--paper-100);
+  --bg-2: var(--paper-50);
+  --bg-3: var(--paper-200);
+  --bg-curtain: var(--paper-200);
+
+  --fg-1: var(--ink-900);
+  --fg-2: var(--ink-700);
+  --fg-3: var(--ink-500);
+  --fg-mute: var(--ink-300);
+
+  --rule: rgba(26, 21, 18, 0.10);
+  --rule-strong: rgba(26, 21, 18, 0.22);
+
+  --accent: var(--brass-600);
+  --accent-hover: var(--wine-700);
+  --link: var(--ink-900);
+  --link-hover: var(--brass-600);
+
+  --shadow-glow: none;
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.6) inset,
+                 0 12px 24px -16px rgba(26, 21, 18, 0.18);
+}
+
+
+/* ----------  TYPE — FAMILIES  ------------------------------ */
+:root {
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-display-bold: "Geist", "Hanken Grotesk", -apple-system, "Helvetica Neue", sans-serif;
+  --font-body:    "EB Garamond", "Iowan Old Style", Georgia, serif;
+  --font-ui:      "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+
+/* ----------  TYPE — SCALE (modular, 1.250 / major third) ----- */
+:root {
+  --t-12: 0.75rem;       /* 12 — micro / eyebrow */
+  --t-14: 0.875rem;      /* 14 — caption, meta */
+  --t-16: 1rem;          /* 16 — body small */
+  --t-18: 1.125rem;      /* 18 — body */
+  --t-22: 1.375rem;      /* 22 — body large / lead */
+  --t-28: 1.75rem;       /* 28 — h4 */
+  --t-36: 2.25rem;       /* 36 — h3 */
+  --t-48: 3rem;          /* 48 — h2 */
+  --t-64: 4rem;          /* 64 — h1 */
+  --t-96: 6rem;          /* 96 — display */
+  --t-144: 9rem;         /* 144 — hero billboard */
+
+  --lh-tight: 0.95;
+  --lh-snug:  1.10;
+  --lh-base:  1.45;
+  --lh-loose: 1.65;
+
+  --track-tight: -0.02em;
+  --track-base:  0;
+  --track-wide:  0.12em;
+  --track-caps:  0.20em;
+}
+
+
+/* ----------  TYPE — SEMANTIC RECIPES  --------------------- */
+
+/* Eyebrow: Hanken Grotesk, ALL CAPS, wide-tracked, micro.
+   Used above headlines, on nav, as section labels.        */
+.t-eyebrow {
+  font-family: var(--font-ui);
+  font-size: var(--t-12);
+  font-weight: 500;
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+/* Display BOLD: Geist heavy grotesque, ALL CAPS, the SAINTE / BLOOM / FOTO
+   announcement voice. Used for: hero billboards, section titles, album-cover
+   typesetting, posters. Pairs against Cormorant italic body. */
+.t-display-bold {
+  font-family: var(--font-display-bold);
+  font-size: clamp(3.5rem, 8vw, var(--t-144));
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--fg-1);
+}
+
+.t-h1-bold {
+  font-family: var(--font-display-bold);
+  font-size: clamp(2.5rem, 5vw, var(--t-64));
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  color: var(--fg-1);
+}
+
+.t-h2-bold {
+  font-family: var(--font-display-bold);
+  font-size: var(--t-48);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--fg-1);
+}
+
+/* Display: Cormorant, light weight, italic ok for editorial flair. */
+.t-display {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 8vw, var(--t-144));
+  font-weight: 300;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-tight);
+  color: var(--fg-1);
+}
+
+.t-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, var(--t-64));
+  font-weight: 400;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--track-tight);
+  color: var(--fg-1);
+}
+
+.t-h2 {
+  font-family: var(--font-display);
+  font-size: var(--t-48);
+  font-weight: 400;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--track-tight);
+  color: var(--fg-1);
+}
+
+.t-h3 {
+  font-family: var(--font-display);
+  font-size: var(--t-36);
+  font-weight: 500;
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+}
+
+.t-h4 {
+  font-family: var(--font-display);
+  font-size: var(--t-28);
+  font-weight: 500;
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+}
+
+/* Lead — first paragraph or pull-quote sized body. */
+.t-lead {
+  font-family: var(--font-body);
+  font-size: var(--t-22);
+  font-weight: 400;
+  line-height: var(--lh-loose);
+  color: var(--fg-2);
+}
+
+/* Body — programme notes, bios. Garamond loves to be set large. */
+.t-body {
+  font-family: var(--font-body);
+  font-size: var(--t-18);
+  font-weight: 400;
+  line-height: var(--lh-loose);
+  color: var(--fg-2);
+}
+
+.t-body-sm {
+  font-family: var(--font-body);
+  font-size: var(--t-16);
+  font-weight: 400;
+  line-height: var(--lh-loose);
+  color: var(--fg-2);
+}
+
+/* UI text — buttons, fields, labels, nav links. */
+.t-ui {
+  font-family: var(--font-ui);
+  font-size: var(--t-14);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--fg-1);
+}
+
+.t-ui-sm {
+  font-family: var(--font-ui);
+  font-size: var(--t-12);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--fg-2);
+}
+
+/* Caption — under images, between credits. Italic Garamond. */
+.t-caption {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: var(--t-14);
+  font-weight: 400;
+  line-height: var(--lh-base);
+  color: var(--fg-3);
+}
+
+/* Mono — tracklist times, catalogue numbers, BPM. */
+.t-mono {
+  font-family: var(--font-mono);
+  font-size: var(--t-12);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--fg-2);
+  font-feature-settings: "tnum" 1;
+}
+
+/* Pull-quote — large Cormorant italic, opening quote mark hanging. */
+.t-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--t-36);
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+  text-wrap: balance;
+}
+
+
+/* ----------  SPACING / LAYOUT TOKENS  --------------------- */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  --radius-0: 0px;
+  --radius-1: 2px;       /* default — quiet */
+  --radius-2: 4px;       /* inputs, cards */
+  --radius-pill: 999px;
+
+  --rule-1: 1px;
+  --rule-2: 2px;
+
+  --maxw-text: 64ch;     /* programme notes line length */
+  --maxw-page: 1280px;
+}
+
+
+/* ----------  ELEMENT DEFAULTS  ---------------------------- */
+html, body {
+  background: var(--bg-1);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-size: var(--t-18);
+  line-height: var(--lh-loose);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .h1 { @extend .t-h1; }   /* not real, see classes above */
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+a:hover { color: var(--link-hover); }
+
+::selection { background: var(--brass-500); color: var(--night-900); }
