@@ -9,7 +9,7 @@ function Nav({ route, onNavigate }) {
     ["about",     "About"],
   ];
   return (
-    <header style={{
+    <header className="cwc-nav" style={{
       position: "sticky", top: 0, zIndex: 50,
       display: "flex", alignItems: "center", justifyContent: "space-between",
       padding: "14px 36px",
@@ -22,7 +22,7 @@ function Nav({ route, onNavigate }) {
          style={{ border: 0, textDecoration: "none" }}>
         <Wordmark size="md" />
       </a>
-      <nav style={{ display: "flex", alignItems: "center", gap: 32 }}>
+      <nav className="cwc-nav-links" style={{ display: "flex", alignItems: "center", gap: 32 }}>
         {items.map(([id, label]) => (
           <a key={id} href={"#/" + id}
              onClick={e => { e.preventDefault(); onNavigate(id); }}
@@ -36,7 +36,7 @@ function Nav({ route, onNavigate }) {
                transition: "color 180ms ease, border-color 180ms ease",
              }}>{label}</a>
         ))}
-        <button aria-label="Search"
+        <button aria-label="Search" className="cwc-nav-search"
                 style={{ background: "transparent", border: 0, color: "var(--halo-200)", cursor: "pointer", padding: 6 }}>
           <Icon name="search" size={18} />
         </button>
@@ -48,9 +48,9 @@ function Nav({ route, onNavigate }) {
 /* ---------- Footer colophon ---------- */
 function Footer() {
   return (
-    <footer style={{ padding: "64px 36px 32px", background: "var(--night-900)" }}>
+    <footer className="cwc-footer" style={{ padding: "64px 36px 32px", background: "var(--night-900)" }}>
       <BrassRule style={{ marginBottom: 32 }} />
-      <div style={{
+      <div className="cwc-footer-grid" style={{
         display: "grid",
         gridTemplateColumns: "2fr 1fr 1fr 1fr",
         gap: 32, alignItems: "start",
@@ -88,7 +88,7 @@ function Footer() {
           </div>
         ))}
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between", marginTop: 48,
+      <div className="cwc-footer-colophon" style={{ display: "flex", justifyContent: "space-between", marginTop: 48,
                     fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--halo-400)" }}>
         <span>© CWC MMXXVI · A working ensemble</span>
         <span>Mastered at half-speed · London W1</span>
@@ -116,7 +116,7 @@ function Player({ playerApi }) {
   };
 
   return (
-    <div style={{
+    <div className="cwc-player" style={{
       position: "sticky", bottom: 0, zIndex: 40,
       background: "rgba(11,9,8,0.92)",
       backdropFilter: "blur(20px)",
@@ -129,7 +129,7 @@ function Player({ playerApi }) {
       alignItems: "center",
     }}>
       {/* Track info */}
-      <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 220 }}>
+      <div className="cwc-player-info" style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 220 }}>
         <div style={{ width: 44, height: 44, background: "#0B0908",
                       border: "1px solid var(--rule)", overflow: "hidden",
                       borderRadius: 2 }}>
@@ -171,7 +171,7 @@ function Player({ playerApi }) {
       </div>
 
       {/* Volume — visual only for now */}
-      <div style={{ display: "flex", gap: 12, alignItems: "center", color: "var(--halo-300)" }}>
+      <div className="cwc-player-volume" style={{ display: "flex", gap: 12, alignItems: "center", color: "var(--halo-300)" }}>
         <Icon name="volume" size={18}/>
         <div style={{ width: 80, height: 2, background: "var(--rule-strong)", position: "relative" }}>
           <div style={{ position: "absolute", inset: 0, width: "62%", background: "var(--halo-200)" }}/>
@@ -192,9 +192,9 @@ const timeStyle = {
 /* ---------- Section wrapper ---------- */
 function Section({ eyebrow, title, children, max, style, dividerBrass }) {
   return (
-    <section style={{ padding: "96px 36px", maxWidth: 1280, margin: "0 auto", ...style }}>
+    <section className="cwc-section" style={{ padding: "96px 36px", maxWidth: 1280, margin: "0 auto", ...style }}>
       {eyebrow || title ? (
-        <div style={{ marginBottom: 48 }}>
+        <div className="cwc-section-head" style={{ marginBottom: 48 }}>
           {dividerBrass ? <BrassRule style={{ marginBottom: 18 }}/> : <HairRule style={{ marginBottom: 18 }}/>}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 16 }}>
             {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : <span/>}

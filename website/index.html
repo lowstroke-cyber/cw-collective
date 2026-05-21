@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Christopher White Collective</title>
-<meta name="viewport" content="width=1280">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="./colors_and_type.css">
 <style>
   * { box-sizing: border-box; }
@@ -31,6 +31,91 @@
 
   /* hide scrollbar offset for sticky player */
   body { padding-bottom: 0; }
+
+  /* ----------------------------------------------------------------
+     Mobile pass. Site is built at 1280; below 820 we stack columns,
+     shrink type, simplify nav + player. Targets classes added to
+     key components (cwc-*). Uses !important to win against the
+     inline styles the React components use.
+     ---------------------------------------------------------------- */
+  img, video, iframe { max-width: 100%; }
+
+  @media (max-width: 820px) {
+    /* Top nav */
+    .cwc-nav        { padding: 12px 18px !important; gap: 14px !important; }
+    .cwc-nav-links  { gap: 16px !important; }
+    .cwc-nav-links a { font-size: 12px !important; }
+    .cwc-nav-search { display: none !important; }
+
+    /* Section wrapper */
+    .cwc-section          { padding: 56px 20px !important; }
+    .cwc-section-head     { margin-bottom: 32px !important; }
+    .cwc-section-head > div { flex-direction: column !important;
+                              align-items: flex-start !important;
+                              gap: 6px !important; }
+    .cwc-section-head h2  { font-size: 36px !important; min-width: 0 !important;
+                            text-align: left !important; flex: initial !important; }
+
+    /* Hero (Home) */
+    .cwc-hero             { padding: 96px 20px 48px !important; min-height: 78vh !important; }
+    .cwc-hero h1          { font-size: 52px !important; }
+    .cwc-hero-bottom      { grid-template-columns: 1fr !important; gap: 28px !important;
+                            margin-top: 32px !important; align-items: start !important; }
+    .cwc-hero-bottom > div:last-child { justify-content: flex-start !important; }
+    .cwc-photo-credit     { display: none !important; }
+
+    /* Generic two-column grids → stacked */
+    .cwc-grid-2           { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .cwc-grid-2-loose     { grid-template-columns: 1fr !important; gap: 40px !important;
+                            padding-left: 0 !important; }
+
+    /* Big headings inside content blocks */
+    .cwc-big-title        { font-size: 44px !important; }
+    .cwc-mid-title        { font-size: 36px !important; }
+
+    /* Personnel / credits rows */
+    .cwc-row-2            { grid-template-columns: 1fr !important; gap: 2px !important;
+                            padding: 10px 0 6px !important; }
+    .cwc-row-2 > :last-child { color: var(--halo-400) !important; }
+
+    /* Footer */
+    .cwc-footer           { padding: 48px 20px 24px !important; }
+    .cwc-footer-grid      { grid-template-columns: 1fr 1fr !important; gap: 28px !important; }
+    .cwc-footer-grid > div:first-child { grid-column: 1 / -1; }
+    .cwc-footer-colophon  { flex-direction: column !important; gap: 8px !important;
+                            margin-top: 36px !important; text-align: left !important; }
+
+    /* Sticky player */
+    .cwc-player           { padding: 10px 14px !important;
+                            grid-template-columns: 1fr !important;
+                            gap: 8px !important; }
+    .cwc-player-volume    { display: none !important; }
+    .cwc-player-info      { min-width: 0 !important; }
+    .cwc-player-info span { font-size: 13px !important; }
+
+    /* Programme rows */
+    .cwc-progrow          { grid-template-columns: 1fr !important;
+                            gap: 6px !important; padding: 20px 0 !important;
+                            align-items: start !important; }
+    .cwc-progrow .cwc-prog-status { font-size: 10px !important; }
+    .cwc-progrow svg      { display: none !important; }
+    .cwc-progrow-venue    { font-size: 26px !important; }
+
+    /* Video thumbnails: 5 → 2 columns */
+    .cwc-video-thumbs     { grid-template-columns: repeat(2, 1fr) !important; }
+
+    /* Contact list — keep readable */
+    .cwc-contact-grid     { grid-template-columns: 1fr !important; gap: 36px !important;
+                            padding-left: 0 !important; }
+  }
+
+  @media (max-width: 480px) {
+    .cwc-hero h1          { font-size: 44px !important; }
+    .cwc-section-head h2  { font-size: 30px !important; }
+    .cwc-big-title        { font-size: 36px !important; }
+    .cwc-mid-title        { font-size: 30px !important; }
+    .cwc-progrow-venue    { font-size: 22px !important; }
+  }
 </style>
 </head>
 <body>

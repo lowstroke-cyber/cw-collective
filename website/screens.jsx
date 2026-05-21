@@ -120,7 +120,7 @@ function HomeScreen({ onNavigate, onPickRelease, heroPhoto = "velvetSax", grain 
   return (
     <main data-screen-label="Home">
       {/* HERO */}
-      <section style={{ position: "relative", minHeight: "92vh",
+      <section className="cwc-hero" style={{ position: "relative", minHeight: "92vh",
                         padding: "120px 36px 80px",
                         display: "flex", flexDirection: "column", justifyContent: "flex-end",
                         overflow: "hidden", background: "var(--night-900)" }}>
@@ -150,7 +150,7 @@ function HomeScreen({ onNavigate, onPickRelease, heroPhoto = "velvetSax", grain 
             Cinematic.
           </h1>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 48,
+          <div className="cwc-hero-bottom" style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 48,
                         marginTop: 56, alignItems: "end" }}>
             <p style={{ fontFamily: "var(--font-body)", fontSize: 20, lineHeight: 1.55,
                         color: "var(--halo-100)", maxWidth: 44 + "ch", margin: 0 }}>
@@ -162,7 +162,7 @@ function HomeScreen({ onNavigate, onPickRelease, heroPhoto = "velvetSax", grain 
             </div>
           </div>
 
-          <div style={{ position: "absolute", bottom: -56, right: 0,
+          <div className="cwc-photo-credit" style={{ position: "absolute", bottom: -56, right: 0,
                         fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.06em",
                         color: "var(--halo-400)", writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
             Photograph — Alice Denny, 2026
@@ -172,7 +172,7 @@ function HomeScreen({ onNavigate, onPickRelease, heroPhoto = "velvetSax", grain 
 
       {/* CURRENT RELEASE */}
       <Section eyebrow="Out now · October 2025" title="Fisher Point" dividerBrass>
-        <div style={{ display: "grid", gridTemplateColumns: "5fr 4fr", gap: 64, alignItems: "center" }}>
+        <div className="cwc-grid-2" style={{ display: "grid", gridTemplateColumns: "5fr 4fr", gap: 64, alignItems: "center" }}>
           <Sleeve release={FISHER_POINT} size={2} onClick={onPickRelease}/>
           <div>
             <p style={{ fontFamily: "var(--font-body)", fontSize: 22, lineHeight: 1.65,
@@ -202,11 +202,11 @@ function MusicScreen({ onPickRelease }) {
                     color: "var(--halo-200)", maxWidth: 56 + "ch", marginBottom: 56 }}>
           The Collective's current recording. Available on Bandcamp and the major streaming services.
         </p>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "start" }}>
+        <div className="cwc-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "start" }}>
           <Sleeve release={FISHER_POINT} size={2} onClick={onPickRelease}/>
           <div style={{ paddingTop: 12 }}>
             <Eyebrow>{FISHER_POINT.format} · {FISHER_POINT.year}</Eyebrow>
-            <h2 style={{ fontFamily: "var(--font-display-bold)", fontWeight: 800,
+            <h2 className="cwc-big-title" style={{ fontFamily: "var(--font-display-bold)", fontWeight: 800,
                          fontSize: 72, lineHeight: 0.9, letterSpacing: "-0.02em",
                          textTransform: "uppercase",
                          color: "var(--halo-100)", margin: "12px 0 0" }}>{FISHER_POINT.title}</h2>
@@ -243,7 +243,7 @@ function ReleaseScreen({ release, onNavigate, playerApi }) {
           ← Back to music
         </button>
 
-        <div style={{ display: "grid", gridTemplateColumns: "5fr 6fr", gap: 64, alignItems: "start" }}>
+        <div className="cwc-grid-2" style={{ display: "grid", gridTemplateColumns: "5fr 6fr", gap: 64, alignItems: "start" }}>
           {/* Sleeve */}
           <div>
             <Sleeve release={r}/>
@@ -259,7 +259,7 @@ function ReleaseScreen({ release, onNavigate, playerApi }) {
           {/* Content */}
           <div>
             <Eyebrow>{r.format} · {r.releaseDate || r.year}</Eyebrow>
-            <h1 style={{ fontFamily: "var(--font-display-bold)", fontWeight: 800,
+            <h1 className="cwc-big-title" style={{ fontFamily: "var(--font-display-bold)", fontWeight: 800,
                          fontSize: 80, lineHeight: 0.88, letterSpacing: "-0.02em",
                          textTransform: "uppercase",
                          color: "var(--halo-100)", margin: "10px 0 14px" }}>{r.title}</h1>
@@ -275,7 +275,7 @@ function ReleaseScreen({ release, onNavigate, playerApi }) {
                 <Eyebrow>Personnel</Eyebrow>
                 <div style={{ marginTop: 16 }}>
                   {r.personnel.map(([name, role]) => (
-                    <div key={name} style={{ display: "grid", gridTemplateColumns: "1fr 1fr",
+                    <div key={name} className="cwc-row-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr",
                                              gap: 16, padding: "10px 0",
                                              borderBottom: "1px solid var(--rule)" }}>
                       <span style={{ fontFamily: "var(--font-display)", fontSize: 18,
@@ -294,7 +294,7 @@ function ReleaseScreen({ release, onNavigate, playerApi }) {
                 <div style={{ marginTop: 14, fontFamily: "var(--font-mono)", fontSize: 12,
                               color: "var(--halo-200)", lineHeight: 2, letterSpacing: "0.02em" }}>
                   {r.credits.map(([role, name]) => (
-                    <div key={role} style={{ display: "grid", gridTemplateColumns: "180px 1fr", gap: 16 }}>
+                    <div key={role} className="cwc-row-2" style={{ display: "grid", gridTemplateColumns: "180px 1fr", gap: 16 }}>
                       <span style={{ color: "var(--halo-400)" }}>{role}</span>
                       <span>{name}</span>
                     </div>
@@ -444,7 +444,7 @@ function ProgrammeScreen() {
       ? { href: ev.link, target: "_blank", rel: "noopener" }
       : {};
     return (
-      <RowTag key={i} {...rowProps}
+      <RowTag key={i} {...rowProps} className="cwc-progrow"
          style={{ display: "grid", gridTemplateColumns: "150px 1fr auto auto",
                   gap: 32, padding: "24px 0",
                   borderTopWidth: i === 0 ? 1 : 0, borderTopStyle: "solid",
@@ -463,7 +463,7 @@ function ProgrammeScreen() {
                          letterSpacing: "0.04em" }}>{ev.year} · {ev.time}</span>
         </div>
         <div>
-          <div style={{ fontFamily: "var(--font-display-bold)", fontWeight: 800,
+          <div className="cwc-progrow-venue" style={{ fontFamily: "var(--font-display-bold)", fontWeight: 800,
                         fontSize: isPast ? 28 : 36,
                         lineHeight: 0.95, letterSpacing: "-0.015em", textTransform: "uppercase",
                         color: baseColor }}>{ev.venue}</div>
@@ -472,7 +472,7 @@ function ProgrammeScreen() {
             {ev.city} · {ev.postcode}{ev.lineup ? ` — ${ev.lineup}` : ""}
           </div>
         </div>
-        <span style={{ fontFamily: "var(--font-ui)", fontSize: 11, fontWeight: 500,
+        <span className="cwc-prog-status" style={{ fontFamily: "var(--font-ui)", fontSize: 11, fontWeight: 500,
                        letterSpacing: "0.22em", textTransform: "uppercase",
                        color: tagColor }}>{tagLabel}</span>
         {ev.link
@@ -493,7 +493,7 @@ function ProgrammeScreen() {
       </Section>
 
       <Section eyebrow="Booking" title="For promoters">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start", paddingLeft: 32 }}>
+        <div className="cwc-grid-2-loose" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start", paddingLeft: 32 }}>
           <p style={{ fontFamily: "var(--font-body)", fontSize: 18, lineHeight: 1.65,
                       color: "var(--halo-200)", margin: 0, maxWidth: 44 + "ch" }}>
             The Collective performs as a quartet, quintet, or with strings. Enquiries for private and venue performances are welcomed.
@@ -513,7 +513,7 @@ function AboutScreen() {
   return (
     <main data-screen-label="About">
       <Section eyebrow="Christopher White" title="A working ensemble" dividerBrass>
-        <div style={{ display: "grid", gridTemplateColumns: "5fr 7fr", gap: 64, paddingLeft: 32 }}>
+        <div className="cwc-grid-2-loose" style={{ display: "grid", gridTemplateColumns: "5fr 7fr", gap: 64, paddingLeft: 32 }}>
           <div style={{
             aspectRatio: "4 / 5",
             background: "#0B0908",
@@ -553,7 +553,7 @@ function AboutScreen() {
       </Section>
 
       <Section eyebrow="Contact" title="Get in touch" dividerBrass>
-        <div style={{ paddingLeft: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
+        <div className="cwc-contact-grid" style={{ paddingLeft: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
           <div>
             <p style={{ fontFamily: "var(--font-body)", fontSize: 20, lineHeight: 1.6, color: "var(--halo-200)", margin: 0 }}>
               The Collective is represented by <span style={{ color: "var(--halo-100)" }}>Longspaces</span>.
@@ -697,7 +697,7 @@ function VideoScreen() {
           </div>
 
           {/* THUMBNAIL GRID */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 14 }}>
+          <div className="cwc-video-thumbs" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 14 }}>
             {VIDEOS.map((thumb, i) => {
               const isCur = i === idx;
               return (
