@@ -600,10 +600,10 @@ function AboutScreen() {
 // Keep entries with empty ids — they render as styled placeholders so the
 // page composition stays intact while content is pending.
 const VIDEOS = [
+  { id: "WdvyK-UPIjE" },
   { id: "n3L0ZnX3vHI" },
   { id: "2m5QvcWVHsM" },
-  { id: "buNXkFRImyM" },
-  { id: "3ri4FOkwMew" },
+  { id: "mU6ebNlHpmI" },
   { id: "4rwfmE9Unvs" },
   { id: "1coTm6noh6w" },
   { id: "tVykuY53KCQ" },
